@@ -1,0 +1,4 @@
+.terraform/
+*.log
+tfplan
+terraform.tfstate*
