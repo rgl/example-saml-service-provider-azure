@@ -102,9 +102,11 @@ similar to:
 | `http://schemas.microsoft.com/identity/claims/tenantid`               | `00000000-0000-0000-0000-000000000000`                                                |
 | `http://schemas.microsoft.com/ws/2008/06/identity/claims/role`        | `administrator`                                                                       |
 | `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname`     | `Alice`                                                                               |
-| `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`          | `alice.doe@example.com`                                                               |
+| `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`          | `example-saml-service-provider-alice.doe@example.com`                                 |
 | `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname`       | `Doe`                                                                                 |
 | `SessionIndex`                                                        | `_00000000-0000-0000-0000-000000000000`                                               |
+| `urn:example`                                                         | `example`                                                                             |
+| `urn:example:email`                                                   | `example-saml-service-provider-alice.doe@example.com`                                 |
 
 **NB** When the user uses multi-factor-authentication (MFA) to login, the following claim is also included:
 

@@ -70,6 +70,39 @@ resource "azuread_service_principal_token_signing_certificate" "example" {
   }
 }
 
+# see https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/claims_mapping_policy
+# see https://learn.microsoft.com/en-us/graph/api/resources/claimsmappingpolicy?view=graph-rest-1.0
+resource "azuread_claims_mapping_policy" "example" {
+  display_name = azuread_application.example.display_name
+  definition = [
+    jsonencode(
+      {
+        ClaimsMappingPolicy = {
+          Version              = 1
+          IncludeBasicClaimSet = "true"
+          ClaimsSchema = [
+            {
+              SamlClaimType = "urn:example:email"
+              Source        = "user"
+              ID            = "mail"
+            },
+            {
+              SamlClaimType = "urn:example"
+              Value         = "example"
+            },
+          ]
+        }
+      }
+    ),
+  ]
+}
+
+# see https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/service_principal_claims_mapping_policy_assignment
+resource "azuread_service_principal_claims_mapping_policy_assignment" "example" {
+  claims_mapping_policy_id = azuread_claims_mapping_policy.example.id
+  service_principal_id     = azuread_service_principal.example.id
+}
+
 # see https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/app_role_assignment
 resource "azuread_app_role_assignment" "alice" {
   app_role_id         = azuread_application.example.app_role_ids["administrator"]
