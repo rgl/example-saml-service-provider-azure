@@ -12,6 +12,7 @@ Install the required tools:
 
 * [terraform](https://github.com/hashicorp/terraform).
 * [azure-cli](https://github.com/Azure/azure-cli).
+* [go](https://github.com/golang/go).
 
 Login into Azure:
 
