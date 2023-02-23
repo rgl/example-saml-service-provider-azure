@@ -5,7 +5,7 @@ resource "azuread_application" "example" {
   logo_image       = filebase64("logo.png")
   sign_in_audience = "AzureADMyOrg"
   identifier_uris = [
-    "urn:example:example-saml-service-provider",
+    "urn:example:${var.prefix}",
   ]
   web {
     homepage_url = "http://localhost:8000"
