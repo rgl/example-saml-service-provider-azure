@@ -1,12 +1,14 @@
+locals {
+  saml_entity_id = "urn:example:${var.prefix}"
+}
+
 # see https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/application
 resource "azuread_application" "example" {
   display_name     = var.prefix
   owners           = [data.azuread_client_config.current.object_id]
   logo_image       = filebase64("logo.png")
   sign_in_audience = "AzureADMyOrg"
-  identifier_uris = [
-    "urn:example:${var.prefix}",
-  ]
+  identifier_uris  = [local.saml_entity_id]
   web {
     homepage_url = "http://localhost:8000"
     redirect_uris = [

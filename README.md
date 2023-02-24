@@ -81,8 +81,10 @@ and execute it:
 git clone https://github.com/rgl/example-saml-service-provider
 cd example-saml-service-provider
 make build
+EXAMPLE_ENTITY_ID="$(cd .. && terraform output -raw saml_entity_id)"
 EXAMPLE_IDP_METADATA="$(cd .. && terraform output -raw saml_metadata_url)"
 ./example-saml-service-provider \
+  --entity-id $EXAMPLE_ENTITY_ID \
   --idp-metadata $EXAMPLE_IDP_METADATA
 ```
 

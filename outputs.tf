@@ -33,6 +33,10 @@ output "service_principal_id" {
   value = azuread_service_principal.example.id
 }
 
+output "saml_entity_id" {
+  value = local.saml_entity_id
+}
+
 output "saml_metadata_url" {
   # NB unfortunately, azuread_service_principal.example.saml_metadata_url is
   #    always empty, so we have to construct the value manually. this will
