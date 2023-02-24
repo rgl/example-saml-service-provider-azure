@@ -30,8 +30,9 @@ resource "azuread_user" "alice" {
   given_name          = "Alice"
   surname             = "Doe"
   display_name        = "Alice Doe"
-  user_principal_name = "${var.prefix}-alice.doe@${data.azuread_domains.current.domains.0.domain_name}"
+  mail_nickname       = "${var.prefix}-alice.doe"
   mail                = "${var.prefix}-alice.doe@${data.azuread_domains.current.domains.0.domain_name}"
+  user_principal_name = "${var.prefix}-alice.doe@${data.azuread_domains.current.domains.0.domain_name}"
   usage_location      = "PT"
   password            = random_password.alice.result
 }
@@ -41,8 +42,9 @@ resource "azuread_user" "bob" {
   given_name          = "Bob"
   surname             = "Doe"
   display_name        = "Bob Doe"
-  user_principal_name = "${var.prefix}-bob.doe@${data.azuread_domains.current.domains.0.domain_name}"
+  mail_nickname       = "${var.prefix}-bob.doe"
   mail                = "${var.prefix}-bob.doe@${data.azuread_domains.current.domains.0.domain_name}"
+  user_principal_name = "${var.prefix}-bob.doe@${data.azuread_domains.current.domains.0.domain_name}"
   usage_location      = "PT"
   password            = random_password.bob.result
 }
@@ -52,8 +54,9 @@ resource "azuread_user" "carol" {
   given_name          = "Carol"
   surname             = "Doe"
   display_name        = "Carol Doe"
-  user_principal_name = "${var.prefix}-carol.doe@${data.azuread_domains.current.domains.0.domain_name}"
+  mail_nickname       = "${var.prefix}-carol.doe"
   mail                = "${var.prefix}-carol.doe@${data.azuread_domains.current.domains.0.domain_name}"
+  user_principal_name = "${var.prefix}-carol.doe@${data.azuread_domains.current.domains.0.domain_name}"
   usage_location      = "PT"
   password            = random_password.carol.result
 }
