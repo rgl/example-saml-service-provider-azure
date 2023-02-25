@@ -8,7 +8,7 @@ locals {
   # e.g. https://login.microsoftonline.com/00000000-0000-0000-0000-000000000000/federationmetadata/2007-06/federationmetadata.xml?appid=00000000-0000-0000-0000-000000000001
   saml_metadata_url = "https://login.microsoftonline.com/${azuread_service_principal.example.application_tenant_id}/federationmetadata/2007-06/federationmetadata.xml?appid=${azuread_service_principal.example.application_id}"
 
-  user_access_url   = "https://myapps.microsoft.com/signin/${azuread_application.example.application_id}?tenantId=${azuread_service_principal.example.application_tenant_id}"
+  user_access_url = "https://myapps.microsoft.com/signin/${azuread_application.example.application_id}?tenantId=${azuread_service_principal.example.application_tenant_id}"
 
   administrator_app_role = "administrator"
   author_app_role        = "author"
