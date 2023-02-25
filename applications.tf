@@ -1,5 +1,12 @@
 locals {
   saml_entity_id = "urn:example:${var.prefix}"
+
+  # NB unfortunately, azuread_service_principal.example.saml_metadata_url is
+  #    always empty, so we have to construct the value manually. this will
+  #    probably break in the future when the azure implementation changes
+  #    this... but for now it works.
+  # e.g. https://login.microsoftonline.com/00000000-0000-0000-0000-000000000000/federationmetadata/2007-06/federationmetadata.xml?appid=00000000-0000-0000-0000-000000000001
+  saml_metadata_url = "https://login.microsoftonline.com/${azuread_service_principal.example.application_tenant_id}/federationmetadata/2007-06/federationmetadata.xml?appid=${azuread_service_principal.example.application_id}"
 }
 
 # see https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/application
