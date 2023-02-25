@@ -9,6 +9,10 @@ locals {
   saml_metadata_url = "https://login.microsoftonline.com/${azuread_service_principal.example.application_tenant_id}/federationmetadata/2007-06/federationmetadata.xml?appid=${azuread_service_principal.example.application_id}"
 
   user_access_url   = "https://myapps.microsoft.com/signin/${azuread_application.example.application_id}?tenantId=${azuread_service_principal.example.application_tenant_id}"
+
+  administrator_app_role = "administrator"
+  author_app_role        = "author"
+  reader_app_role        = "reader"
 }
 
 # see https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/application
@@ -26,21 +30,21 @@ resource "azuread_application" "example" {
   }
   app_role {
     id                   = uuidv5("url", "urn:administrator")
-    value                = "administrator"
+    value                = local.administrator_app_role
     description          = "Administrator"
     display_name         = "Administrator"
     allowed_member_types = ["User"]
   }
   app_role {
     id                   = uuidv5("url", "urn:author")
-    value                = "author"
+    value                = local.author_app_role
     description          = "Author"
     display_name         = "Author"
     allowed_member_types = ["User"]
   }
   app_role {
     id                   = uuidv5("url", "urn:reader")
-    value                = "reader"
+    value                = local.reader_app_role
     description          = "Reader"
     display_name         = "Reader"
     allowed_member_types = ["User"]
@@ -116,21 +120,21 @@ resource "azuread_service_principal_claims_mapping_policy_assignment" "example" 
 
 # see https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/app_role_assignment
 resource "azuread_app_role_assignment" "alice" {
-  app_role_id         = azuread_application.example.app_role_ids["administrator"]
+  app_role_id         = azuread_application.example.app_role_ids[local.administrator_app_role]
   resource_object_id  = azuread_service_principal.example.object_id
   principal_object_id = azuread_user.alice.object_id
 }
 
 # see https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/app_role_assignment
 resource "azuread_app_role_assignment" "bob" {
-  app_role_id         = azuread_application.example.app_role_ids["author"]
+  app_role_id         = azuread_application.example.app_role_ids[local.author_app_role]
   resource_object_id  = azuread_service_principal.example.object_id
   principal_object_id = azuread_user.bob.object_id
 }
 
 # see https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/app_role_assignment
 resource "azuread_app_role_assignment" "carol" {
-  app_role_id         = azuread_application.example.app_role_ids["reader"]
+  app_role_id         = azuread_application.example.app_role_ids[local.reader_app_role]
   resource_object_id  = azuread_service_principal.example.object_id
   principal_object_id = azuread_user.carol.object_id
 }
