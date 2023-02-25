@@ -93,6 +93,13 @@ through the authentication flow using the `Alice` credentials:
 
 http://localhost:8000
 
+**NB** Alternatively, you can initiate a user login from the IDP side at the URL
+given by:
+
+```bash
+terraform output -raw user_access_url
+```
+
 After a successful authentication, you should see a list of SAML Claims,
 similar to:
 

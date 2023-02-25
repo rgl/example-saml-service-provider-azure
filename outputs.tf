@@ -40,3 +40,7 @@ output "saml_entity_id" {
 output "saml_metadata_url" {
   value = local.saml_metadata_url
 }
+
+output "user_access_url" {
+  value = local.user_access_url
+}
