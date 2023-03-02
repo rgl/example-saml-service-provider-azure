@@ -85,6 +85,12 @@ resource "azuread_service_principal_token_signing_certificate" "example" {
   }
 }
 
+# see https://registry.terraform.io/providers/rgl/saml/latest/docs/resources/metadata
+resource "saml_metadata" "example" {
+  url                          = local.saml_metadata_url
+  token_signing_key_thumbprint = azuread_service_principal_token_signing_certificate.example.thumbprint
+}
+
 # see https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/claims_mapping_policy
 # see https://learn.microsoft.com/en-us/graph/api/resources/claimsmappingpolicy?view=graph-rest-1.0
 resource "azuread_claims_mapping_policy" "example" {

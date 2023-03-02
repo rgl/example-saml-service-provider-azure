@@ -20,6 +20,12 @@ terraform {
       source  = "hashicorp/azuread"
       version = "2.35.0"
     }
+    # see https://github.com/rgl/terraform-provider-saml
+    # see https://registry.terraform.io/providers/rgl/saml
+    saml = {
+      source  = "rgl/saml"
+      version = "0.3.0"
+    }
   }
 }
 

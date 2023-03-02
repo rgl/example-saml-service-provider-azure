@@ -38,7 +38,7 @@ output "saml_entity_id" {
 }
 
 output "saml_metadata_url" {
-  value = local.saml_metadata_url
+  value = saml_metadata.example.url
 }
 
 output "user_access_url" {
