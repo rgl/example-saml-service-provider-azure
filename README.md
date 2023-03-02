@@ -1,5 +1,7 @@
 # About
 
+[![Lint](https://github.com/rgl/example-saml-service-provider-azure/actions/workflows/lint.yml/badge.svg)](https://github.com/rgl/example-saml-service-provider-azure/actions/workflows/lint.yml)
+
 Azure AD (AAD) configuration for the [example-saml-service-provider](https://github.com/rgl/example-saml-service-provider).
 
 This will use [terraform](https://www.terraform.io/) to create the [Users](users.tf), [Application, Application Roles, Enterprise Application (aka Service Principal)](applications.tf) to use the `example-saml-service-provider` web application.
