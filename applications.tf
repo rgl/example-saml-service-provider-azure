@@ -93,6 +93,9 @@ resource "saml_metadata" "example" {
 
 # see https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/claims_mapping_policy
 # see https://learn.microsoft.com/en-us/graph/api/resources/claimsmappingpolicy?view=graph-rest-1.0
+# NB you can indirectly see how create the ClaimsMappingPolicy document by
+#    observing the Azure Portal UI requests in the web browser developer tools.
+#    see https://github.com/manicminer/hamilton/issues/224#issuecomment-1452059521
 resource "azuread_claims_mapping_policy" "example" {
   display_name = azuread_application.example.display_name
   definition = [
